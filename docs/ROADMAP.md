@@ -15,12 +15,13 @@ Scope: one company per account, one role (owner), Polish UI only. Data model kee
 
 Goal: a monorepo that builds, tests and runs locally; a user can sign up and sign in.
 
+- [x] Spec 001: `docs/specs/001-project-setup.md`
 - [ ] Monorepo setup (pnpm workspaces), shared `tsconfig`, ESLint, Prettier
 - [ ] Docker Compose: Postgres with pgvector, Redis, MinIO (local S3)
 - [ ] GitHub Actions: lint, typecheck, test on every PR
 - [ ] `apps/web`: Next.js App Router skeleton with Tailwind
 - [ ] `packages/shared` setup and env validation with Zod
-- [ ] Spec: `docs/specs/auth.md`
+- [ ] Spec 002: `docs/specs/002-auth.md`
 - [ ] ADR 002: auth approach (session cookies vs JWT, library)
 - [ ] Prisma schema and first migration: User, Company, Document, Extraction, Invoice, InvoiceLine, Category
 - [ ] Express app structure: error-handling middleware, Zod validation middleware, consistent error format
@@ -32,8 +33,8 @@ Goal: a monorepo that builds, tests and runs locally; a user can sign up and sig
 
 Goal: an uploaded photo or PDF lands in S3, gets processed in the background, and ends up with structured data and per-field confidence.
 
-- [ ] Spec: `docs/specs/document-upload.md`
-- [ ] Spec: `docs/specs/ai-extraction.md`
+- [ ] Spec 003: `docs/specs/003-document-upload.md`
+- [ ] Spec 004: `docs/specs/004-ai-extraction.md`
 - [ ] ADR 003: model provider and structured output approach
 - [ ] Document endpoints: presigned upload URL, confirm upload, get document; file type and size limits
 - [ ] Document status machine (`UPLOADED`, `PROCESSING`, `NEEDS_REVIEW`, `APPROVED`, `FAILED`)
@@ -49,8 +50,8 @@ Goal: an uploaded photo or PDF lands in S3, gets processed in the background, an
 
 Goal: the user reviews and approves extracted data, browses documents by status, and sees a simple spending overview.
 
-- [ ] Spec: `docs/specs/review-screen.md`
-- [ ] Spec: `docs/specs/documents-and-dashboard.md`
+- [ ] Spec 005: `docs/specs/005-review-screen.md`
+- [ ] Spec 006: `docs/specs/006-documents-and-dashboard.md`
 - [ ] TanStack Query setup and the data fetching pattern: query keys, custom hooks, loading and error states, mutations with invalidation
 - [ ] Review screen: document preview (image and PDF) next to the form
 - [ ] Review form with React Hook Form and the shared Zod schema, low-confidence fields highlighted, approve and reject
@@ -80,7 +81,7 @@ Goal: 1.0 is live on AWS, the critical paths are covered by tests, and the proje
 
 ## Version 1.1+
 
-Added while job hunting, roughly in this order. Each gets a spec and, where needed, an ADR before work starts.
+Added while job hunting, roughly in this order. Each gets a numbered spec and, where needed, an ADR before work starts.
 
 ### 1.1: i18n
 - Polish default with an English switch; move all UI strings to locale files.
