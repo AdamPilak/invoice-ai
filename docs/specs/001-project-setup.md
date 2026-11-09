@@ -1,4 +1,4 @@
-# Project setup
+# 001. Project setup
 
 Status: draft
 Roadmap: 1.0 / week 1

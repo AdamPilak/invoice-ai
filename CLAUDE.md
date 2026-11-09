@@ -15,7 +15,7 @@ Read before planning any change:
 - `docs/ROADMAP.md`: versions, current week, task list.
 - `docs/ARCHITECTURE.md`: system shape, modules, data flow.
 - `docs/WORKFLOW.md`: how a task goes from spec to commit.
-- `docs/specs/`: one lightweight spec per feature. Implement against the spec.
+- `docs/specs/`: one lightweight spec per feature, numbered `NNN-feature-name.md` in roadmap order (see `docs/WORKFLOW.md`). Implement against the spec.
 - `docs/decisions/`: ADRs. Do not contradict an accepted ADR; propose a new one instead.
 
 If the code and the docs disagree, stop and ask which one is right.

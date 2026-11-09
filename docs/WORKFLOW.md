@@ -18,7 +18,7 @@ How work moves from an idea to a commit in this project. The tools are Claude Co
 
 ## The cycle
 
-1. **Spec (chat).** Agree on scope, acceptance criteria, edge cases and open questions. Save the spec as `docs/specs/<feature>.md` using the template below.
+1. **Spec (chat).** Agree on scope, acceptance criteria, edge cases and open questions. Save the spec as `docs/specs/NNN-feature-name.md` (see [Spec numbering](#spec-numbering)) using the template below.
 2. **Plan (Claude Code, plan mode).** Start a fresh session and run `/start-task <task>`. Claude reads `CLAUDE.md`, the spec and relevant ADRs, then proposes a plan. Adjust the plan before any code is written.
 3. **Implement.** Core areas: the developer writes, Claude assists. Everything else: Claude writes in small steps.
 4. **Test.** Add or update Vitest, RTL and Playwright tests as appropriate. Lint and typecheck must pass.
@@ -37,12 +37,22 @@ How work moves from an idea to a commit in this project. The tools are Claude Co
 | `.claude/commands/wrap-up.md` | `/wrap-up`: run checks, update roadmap, specs and ADRs, prepare the commit. |
 | `.claude/agents/reviewer.md` | `reviewer` subagent: read-only review of the branch's changes. |
 
+## Spec numbering
+
+Specs in `docs/specs/` are numbered like ADRs: `NNN-feature-name.md`, for example `001-project-setup.md`.
+
+- Numbers are three digits, start at `001` and follow the order of features in `docs/ROADMAP.md`.
+- The roadmap reserves a number for every planned spec (`Spec 002: docs/specs/002-auth.md`). A new spec that is not in the roadmap takes the next free number and is added to the roadmap at the same time.
+- A number is never reused or changed, even if a spec is dropped or the order of work changes. A dropped spec stays with status `superseded` or is noted in the roadmap.
+- The title of the spec starts with its number: `# 001. Project setup`.
+- Branches, commits and PRs may refer to a spec by its number (`spec 003`).
+
 ## Spec template
 
 ```markdown
-# <Feature name>
+# NNN. <Feature name>
 
-Status: draft | accepted | implemented
+Status: draft | accepted | implemented | superseded
 Roadmap: <version / week>
 
 ## Goal
