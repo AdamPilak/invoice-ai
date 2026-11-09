@@ -6,28 +6,27 @@ How work moves from an idea to a commit in this project. The tools are Claude Co
 
 - The repository is the source of truth. Decisions made in a chat are not real until they are written to `docs/`.
 - One feature or stage per chat. One task per Claude Code session.
-- Every task is tagged **[SAM]** or **[CC]** in `docs/ROADMAP.md`. [SAM] is only for the four showcase areas listed in the roadmap; everything else is [CC].
-- The project does not wait for the Interview Prep JS course. Each roadmap stage lists related course modules as background theory. If a stage needs a topic the developer has not covered in the course yet, the spec chat explains it briefly before implementation.
-- The goal is learning as much as shipping: the developer must be able to explain every line in an interview.
+- The developer writes the core areas listed in `CLAUDE.md` (AI pairing rules); Claude Code writes the rest.
+- The developer must be able to explain every line of code in the repository.
 
-## Task modes
+## Who writes the code
 
-| Mode | Who writes the code | What Claude does |
+| Area | Who writes the code | What Claude does |
 | --- | --- | --- |
-| [SAM] | The developer | Hints, guiding questions, docs links, review. No solution code unless explicitly asked. |
-| [CC] | Claude Code | Writes small, reviewable diffs, explains non-obvious choices, lists what to verify. The developer reviews every line. `/grill-me` is mandatory. |
+| Core areas (see `CLAUDE.md`) | The developer | Hints, guiding questions, docs links, review. No solution code unless explicitly asked. |
+| Everything else | Claude Code | Writes small, reviewable diffs, explains non-obvious choices, lists what to verify. The developer reviews every line. `/grill-me` is mandatory. |
 
 ## The cycle
 
-1. **Spec (chat).** Agree on scope, acceptance criteria, edge cases and open questions. If the feature uses a topic not yet covered in the course, explain it briefly here. Save the spec as `docs/specs/<feature>.md` using the template below.
+1. **Spec (chat).** Agree on scope, acceptance criteria, edge cases and open questions. Save the spec as `docs/specs/<feature>.md` using the template below.
 2. **Plan (Claude Code, plan mode).** Start a fresh session. Claude reads `CLAUDE.md`, the spec and relevant ADRs, then proposes a plan. Adjust the plan before any code is written.
-3. **Implement.** [SAM] tasks: the developer writes, Claude assists. [CC] tasks: Claude writes in small steps.
+3. **Implement.** Core areas: the developer writes, Claude assists. Everything else: Claude writes in small steps.
 4. **Test.** Add or update Vitest, RTL and Playwright tests as appropriate. Lint and typecheck must pass.
 5. **Subagent review.** Run a review subagent on the diff (correctness, security, tenant isolation, missing tests).
-6. **/grill-me.** Claude quizzes the developer on the change: why this approach, alternatives, failure modes. Mandatory for every [CC] task, recommended for [SAM].
+6. **/grill-me.** Claude quizzes the developer on the change: why this approach, alternatives, failure modes. Mandatory when Claude Code wrote the code, recommended otherwise.
 7. **/wrap-up.** Update `docs/ROADMAP.md` (task status) and add or update ADRs in `docs/decisions/`.
 8. **Commit.** Conventional Commits in English.
-9. **Review (chat).** Interview-style review: the chat asks questions as an interviewer would, tied to the related Interview Prep JS modules.
+9. **Review (chat).** A question-driven review of the finished feature: why this design, what the alternatives were, what breaks at scale, how it is tested.
 
 ## Spec template
 
@@ -36,7 +35,6 @@ How work moves from an idea to a commit in this project. The tools are Claude Co
 
 Status: draft | accepted | implemented
 Roadmap: <version / week>
-Related theory: <course modules>
 
 ## Goal
 One or two sentences.

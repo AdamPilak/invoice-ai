@@ -12,7 +12,7 @@ Invoice AI is an invoice and expense assistant for small businesses. A user uplo
 
 Read before planning any change:
 
-- `docs/ROADMAP.md`: stages, current stage, task list with `[SAM]` / `[CC]` tags.
+- `docs/ROADMAP.md`: versions, current week, task list.
 - `docs/ARCHITECTURE.md`: system shape, modules, data flow.
 - `docs/WORKFLOW.md`: how a task goes from spec to commit.
 - `docs/specs/`: one lightweight spec per feature. Implement against the spec.
@@ -20,14 +20,20 @@ Read before planning any change:
 
 If the code and the docs disagree, stop and ask which one is right.
 
-## Task modes
+## AI pairing rules
 
-Every task in the roadmap is tagged:
+The developer writes these areas themselves:
 
-- **[SAM]**: the developer writes the code. Do NOT write the solution. Explain concepts, point to docs, ask guiding questions, review what was written. Show at most small snippets that illustrate an API, not the implementation. [SAM] is reserved for the four showcase areas the developer defends in interviews: the review screen (preview + React Hook Form + Zod), the TanStack Query data fetching pattern, the AI extraction pipeline with confidence scores, and the core API with authorization (endpoints, validation, error handling).
-- **[CC]**: everything else (config, boilerplate, styling, simple components, remaining logic, extra tests). Claude Code writes the code, and the developer must understand every line: keep diffs small, explain non-obvious choices, list what to check during review. Every [CC] task ends with `/grill-me`.
+1. The review screen: document preview and the form built with React Hook Form and Zod.
+2. The data fetching pattern with TanStack Query, including loading and error states.
+3. The AI extraction pipeline: prompts, structured output, validation, confidence scores.
+4. The core API: endpoints, authorization, validation, error handling.
 
-If a task has no tag, ask before writing code.
+In these areas, do NOT write the implementation. Explain concepts, point to docs, ask guiding questions and review what was written. Show at most small snippets that illustrate an API. Write full code only when explicitly asked.
+
+Everywhere else (config, boilerplate, styling, simple components, remaining logic, extra tests), Claude Code writes the code and the developer must understand every line: keep diffs small, explain non-obvious choices, and list what to check during review. Finish each such task with `/grill-me`.
+
+If it is unclear which side a task falls on, ask before writing code.
 
 ## Language
 
@@ -69,7 +75,7 @@ To be filled in as the tooling lands (install, dev, test, lint, typecheck, e2e, 
 ## Before you finish a task
 
 1. Tests for the change pass; add tests for new behavior.
-   If the task is [CC], run `/grill-me` before closing it.
+   If Claude Code wrote the code, run `/grill-me` before closing the task.
 2. Lint and typecheck pass.
 3. Update `docs/ROADMAP.md` (task status) and add an ADR in `docs/decisions/` if a decision was made.
 4. Commit using Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `test:`, `refactor:`).

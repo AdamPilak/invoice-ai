@@ -7,7 +7,7 @@ Status: accepted
 
 Invoice AI needs a web UI and a backend that handles auth, multi-tenant data access, file uploads via S3 presigned URLs, background jobs (AI extraction, categorization, duplicate detection) with BullMQ, and a read-only text-to-SQL chat. Next.js alone could serve both the UI and the API (Route Handlers, Server Actions).
 
-The project is also a learning and portfolio project. It should demonstrate both modern React and a classic Node.js backend, which are common interview topics.
+The backend has long-running work (queues, workers, AI calls) and should stay independent of the frontend framework.
 
 ## Decision
 
@@ -22,7 +22,7 @@ The web app talks to the API over HTTP. Only the API accesses the database.
 ## Alternatives considered
 
 - **Next.js full stack (Route Handlers / Server Actions).** Less infrastructure and one deployment. But long-running and background work (queues, workers) does not fit the request model well, serverless limits are a risk for AI processing, and backend logic gets tied to the frontend framework.
-- **NestJS instead of Express.** More structure out of the box, but more framework magic to learn at once. Express keeps the backend explicit, which suits the [SAM] tasks.
+- **NestJS instead of Express.** More structure out of the box, but more framework magic to learn at once. Express keeps the backend explicit and small, which makes every piece of middleware and routing easy to follow.
 - **tRPC between web and api.** Strong end-to-end types, but couples the clients to TypeScript and hides HTTP details. Shared Zod schemas give most of the type safety while keeping a plain REST API.
 
 ## Consequences
