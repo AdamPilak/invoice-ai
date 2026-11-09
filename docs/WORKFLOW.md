@@ -19,14 +19,23 @@ How work moves from an idea to a commit in this project. The tools are Claude Co
 ## The cycle
 
 1. **Spec (chat).** Agree on scope, acceptance criteria, edge cases and open questions. Save the spec as `docs/specs/<feature>.md` using the template below.
-2. **Plan (Claude Code, plan mode).** Start a fresh session. Claude reads `CLAUDE.md`, the spec and relevant ADRs, then proposes a plan. Adjust the plan before any code is written.
+2. **Plan (Claude Code, plan mode).** Start a fresh session and run `/start-task <task>`. Claude reads `CLAUDE.md`, the spec and relevant ADRs, then proposes a plan. Adjust the plan before any code is written.
 3. **Implement.** Core areas: the developer writes, Claude assists. Everything else: Claude writes in small steps.
 4. **Test.** Add or update Vitest, RTL and Playwright tests as appropriate. Lint and typecheck must pass.
-5. **Subagent review.** Run a review subagent on the diff (correctness, security, tenant isolation, missing tests).
+5. **Subagent review.** Run the `reviewer` subagent (`.claude/agents/reviewer.md`) on the diff (correctness, security, tenant isolation, missing tests).
 6. **/grill-me.** Claude quizzes the developer on the change: why this approach, alternatives, failure modes. Mandatory when Claude Code wrote the code, recommended otherwise.
 7. **/wrap-up.** Update `docs/ROADMAP.md` (task status) and add or update ADRs in `docs/decisions/`.
 8. **Commit.** Conventional Commits in English.
 9. **Review (chat).** A question-driven review of the finished feature: why this design, what the alternatives were, what breaks at scale, how it is tested.
+
+## Claude Code commands and agents
+
+| File | Use |
+| --- | --- |
+| `.claude/commands/start-task.md` | `/start-task <task>`: load context, check the spec, decide who writes the code, propose a plan. |
+| `.claude/commands/grill-me.md` | `/grill-me`: quiz the developer on the current change, one question at a time. |
+| `.claude/commands/wrap-up.md` | `/wrap-up`: run checks, update roadmap, specs and ADRs, prepare the commit. |
+| `.claude/agents/reviewer.md` | `reviewer` subagent: read-only review of the branch's changes. |
 
 ## Spec template
 
